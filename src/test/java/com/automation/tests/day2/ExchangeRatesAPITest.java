@@ -72,17 +72,20 @@ public class ExchangeRatesAPITest {
                 queryParam ("symbols","EUR","GBP","JPY").get();
         System.out.println(response.prettyPrint());
 
-
-
-
-
-
-
-
-
-
     }
 
+
+
+    @Test
+    public  void test6(){
+        Response response = given().
+                baseUri(baseURI + "latest").
+                queryParam("base", "USD").
+                get();
+        String body = response.getBody().asString();
+        assertEquals(200, response.getStatusCode());
+        assertTrue(body.contains("\"base\":\"USD\""));
+    }
     }
 
 
